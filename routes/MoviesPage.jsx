@@ -1,5 +1,12 @@
+import Navbar from '../components/Navbar';
+
 function MoviesPage() {
-  <h1>This is where the movies are displayed!</h1>;
+  return (
+    <>
+      <Navbar />
+      <h1>Movies Page</h1>
+    </>
+  );
 }
 
 export default MoviesPage;
