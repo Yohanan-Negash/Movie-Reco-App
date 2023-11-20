@@ -1,5 +1,6 @@
 import { useRouteError } from 'react-router-dom';
 import styled from 'styled-components';
+import Navbar from '../components/Navbar';
 
 const CenteredContainer = styled.div`
   background-color: black;
@@ -36,13 +37,16 @@ function ErrorPage() {
   const error = useRouteError();
   console.error(error);
   return (
-    <CenteredContainer>
-      <ErrorContainer>
-        <Title>404!</Title>
-        <Message>Sorry, an unexpected error has occured.</Message>
-        <SubMessage>Resource {error.statusText || error.message}!</SubMessage>
-      </ErrorContainer>
-    </CenteredContainer>
+    <>
+      <Navbar />
+      <CenteredContainer>
+        <ErrorContainer>
+          <Title>404!</Title>
+          <Message>Sorry, an unexpected error has occured.</Message>
+          <SubMessage>Resource {error.statusText || error.message}!</SubMessage>
+        </ErrorContainer>
+      </CenteredContainer>
+    </>
   );
 }
 
