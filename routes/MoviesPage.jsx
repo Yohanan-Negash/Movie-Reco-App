@@ -1,6 +1,7 @@
 import Navbar from '../components/Navbar';
 import { useState } from 'react';
 import SearchField from '../components/SearchField';
+import MovieDetails from '../components/MovieDetails';
 
 function MoviesPage() {
   const [movie, setMovie] = useState('');
@@ -14,8 +15,14 @@ function MoviesPage() {
       const data = await response.json();
 
       if (data.movieDetails) {
-        const { title, overview, release_date } = data.movieDetails;
-        setMovieDetails({ title, overview, release_date });
+        const { title, overview, release_date, poster_path } =
+          data.movieDetails;
+        setMovieDetails({
+          title,
+          overview,
+          releaseDate: release_date,
+          posterPath: poster_path,
+        });
       } else {
         setMovieDetails(null);
       }
@@ -33,11 +40,12 @@ function MoviesPage() {
         onSearch={findMovie}
       />
       {movieDetails && (
-        <div>
-          <h2>{movieDetails.title}</h2>
-          <p>{movieDetails.overview}</p>
-          <p>Release Date: {movieDetails.release_date}</p>
-        </div>
+        <MovieDetails
+          title={movieDetails.title}
+          overview={movieDetails.overview}
+          releaseDate={movieDetails.releaseDate}
+          posterPath={movieDetails.posterPath}
+        />
       )}
     </>
   );
