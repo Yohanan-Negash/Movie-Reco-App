@@ -1,5 +1,6 @@
 import Navbar from '../components/Navbar';
 import { useState } from 'react';
+import SearchField from '../components/SearchField';
 
 function MoviesPage() {
   const [movie, setMovie] = useState('');
@@ -26,13 +27,11 @@ function MoviesPage() {
   return (
     <>
       <Navbar />
-      <input
-        type='text'
+      <SearchField
         value={movie}
         onChange={(e) => setMovie(e.target.value)}
-        placeholder='Enter a movie title'
+        onSearch={findMovie}
       />
-      <button onClick={findMovie}>Search Movie</button>
       {movieDetails && (
         <div>
           <h2>{movieDetails.title}</h2>
