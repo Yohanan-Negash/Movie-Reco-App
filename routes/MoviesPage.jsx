@@ -15,13 +15,12 @@ function MoviesPage() {
       const data = await response.json();
 
       if (data.movieDetails) {
-        const { title, overview, release_date, poster_path } =
-          data.movieDetails;
+        const { title, overview, releaseDate, posterUrl } = data.movieDetails;
         setMovieDetails({
           title,
           overview,
-          releaseDate: release_date,
-          posterPath: poster_path,
+          releaseDate: releaseDate,
+          posterPath: posterUrl,
         });
       } else {
         setMovieDetails(null);
