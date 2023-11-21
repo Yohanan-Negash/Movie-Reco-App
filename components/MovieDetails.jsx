@@ -7,10 +7,7 @@ function MovieDetails({ title, overview, releaseDate, posterPath }) {
   return (
     <Container>
       <h2>{title}</h2>
-      <img
-        src={`http://localhost:4000/api/movies/find?${title}/${posterPath}`}
-        alt={title}
-      />
+      <img src={posterPath} alt={title} />
       <p>{overview}</p>
       <p>Release Data: {releaseDate}</p>
     </Container>
