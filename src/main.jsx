@@ -5,6 +5,8 @@ import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ErrorPage from '../routes/ErrorPage.jsx';
 import MoviesPage from '../routes/MoviesPage.jsx';
+import PopularPage from '../routes/PopularPage.jsx';
+import TrendingPage from '../routes/TrendingPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -15,6 +17,16 @@ const router = createBrowserRouter([
   {
     path: '/movies',
     element: <MoviesPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: '/popular',
+    element: <PopularPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: '/trending',
+    element: <TrendingPage />,
     errorElement: <ErrorPage />,
   },
 ]);

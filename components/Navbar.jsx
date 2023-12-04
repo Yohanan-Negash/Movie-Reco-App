@@ -12,9 +12,18 @@ const NavbarList = styled.ul`
   justify-content: space-between;
   align-items: center;
   padding: 12px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 const NavbarItem = styled.li`
   margin: 0 20px;
+
+  @media (max-width: 768px) {
+    margin: 10px 0;
+  }
 `;
 const NavbarLink = styled(Link)`
   text-decoration: none;
@@ -36,6 +45,12 @@ function Navbar() {
         </NavbarItem>
         <NavbarItem>
           <NavbarLink to={`/movies`}>Movies</NavbarLink>
+        </NavbarItem>
+        <NavbarItem>
+          <NavbarLink to={`/popular`}>Popular</NavbarLink>
+        </NavbarItem>
+        <NavbarItem>
+          <NavbarLink to={`/trending`}>Trending</NavbarLink>
         </NavbarItem>
       </NavbarList>
     </NavbarContainer>
