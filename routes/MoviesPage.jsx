@@ -5,8 +5,7 @@ import MovieDetails from '../components/MovieDetails';
 
 function MoviesPage() {
   const [movie, setMovie] = useState('');
-  const [movieDetails, setMovieDetails] = useState(null);
-
+  const [movieDetailsList, setMovieDetailsList] = useState([]);
   const findMovie = async () => {
     const url = `http://localhost:4000/api/movies/find?title=${movie}`;
 
@@ -14,16 +13,10 @@ function MoviesPage() {
       const response = await fetch(url);
       const data = await response.json();
 
-      if (data.movieDetails) {
-        const { title, overview, releaseDate, posterUrl } = data.movieDetails;
-        setMovieDetails({
-          title,
-          overview,
-          releaseDate: releaseDate,
-          posterPath: posterUrl,
-        });
+      if (data.movies && data.movies.length > 0) {
+        setMovieDetailsList(data.movies);
       } else {
-        setMovieDetails(null);
+        setMovieDetailsList([]);
       }
     } catch (error) {
       console.error('There is an error', error);
@@ -38,13 +31,18 @@ function MoviesPage() {
         onChange={(e) => setMovie(e.target.value)}
         onSearch={findMovie}
       />
-      {movieDetails && (
-        <MovieDetails
-          title={movieDetails.title}
-          overview={movieDetails.overview}
-          releaseDate={movieDetails.releaseDate}
-          posterPath={movieDetails.posterPath}
-        />
+      {movieDetailsList.length > 0 && (
+        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+          {movieDetailsList.map((movie, index) => (
+            <MovieDetails
+              key={index}
+              title={movie.title}
+              overview={movie.overview}
+              releaseDate={movie.releaseDate}
+              posterPath={movie.posterUrl}
+            />
+          ))}
+        </div>
       )}
     </>
   );
